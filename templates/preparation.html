@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}Prepare — DataLens{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+        <div class="page-icon">🧹</div>
+
+        <div>
+            <h1>Prepare Your Data</h1>
+
+            <p>
+                Clean, transform and organize your dataset before analysis.
+            </p>
+        </div>
+    </div>
+
+
+    {% if info %}
+
+    <div class="metric-grid">
+
+        <div class="metric-card">
+            <span class="metric-icon">📄</span>
+            <h3>Rows</h3>
+            <p>{{ info.rows }}</p>
+        </div>
+
+        <div class="metric-card">
+            <span class="metric-icon">📊</span>
+            <h3>Columns</h3>
+            <p>{{ info.columns }}</p>
+        </div>
+
+        <div class="metric-card">
+            <span class="metric-icon">⚠️</span>
+            <h3>Missing Values</h3>
+            <p>{{ info.missing_values }}</p>
+        </div>
+
+        <div class="metric-card">
+            <span class="metric-icon">♻️</span>
+            <h3>Duplicates</h3>
+            <p>{{ info.duplicate_rows }}</p>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-heading">
+
+            <div>
+                <h2>Dataset Quality</h2>
+
+                <p>
+                    Current quality indicators for your uploaded dataset.
+                </p>
+            </div>
+
+        </div>
+
+
+        {% if quality %}
+
+        <div class="quality-grid">
+
+            <div class="quality-item">
+                <span>Missing Values</span>
+                <strong>{{ quality.missing_values }}</strong>
+                <small>{{ quality.missing_percentage }}%</small>
+            </div>
+
+            <div class="quality-item">
+                <span>Duplicate Rows</span>
+                <strong>{{ quality.duplicate_rows }}</strong>
+                <small>{{ quality.duplicate_percentage }}%</small>
+            </div>
+
+            <div class="quality-item">
+                <span>Total Cells</span>
+                <strong>{{ quality.total_cells }}</strong>
+                <small>cells</small>
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <div class="feature-icon">🧹</div>
+
+            <h2>Missing Values</h2>
+
+            <p>
+                Handle missing numerical and categorical values
+                using appropriate strategies.
+            </p>
+
+            <div class="button-row">
+
+                <button class="secondary-btn"
+                        onclick="alert('Mean imputation is available for numerical columns.')">
+                    Mean
+                </button>
+
+                <button class="secondary-btn"
+                        onclick="alert('Median imputation is available for numerical columns.')">
+                    Median
+                </button>
+
+                <button class="secondary-btn"
+                        onclick="alert('Mode imputation is available for categorical columns.')">
+                    Mode
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="feature-icon">♻️</div>
+
+            <h2>Duplicate Detection</h2>
+
+            <p>
+                Identify repeated records and prepare the dataset
+                for cleaner analysis.
+            </p>
+
+            <div class="status-pill">
+                {{ info.duplicate_rows }} duplicate rows detected
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="feature-icon">🔢</div>
+
+            <h2>Transformation</h2>
+
+            <p>
+                Standardize, normalize and encode variables
+                automatically based on their detected types.
+            </p>
+
+            <div class="status-pill">
+                {{ columns|length }} columns available
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="feature-icon">🔍</div>
+
+            <h2>Filtering & Slicing</h2>
+
+            <p>
+                Select useful rows and columns for focused
+                exploratory analysis.
+            </p>
+
+            <div class="status-pill">
+                Ready
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <div class="empty-icon">📂</div>
+
+        <h2>No dataset loaded yet</h2>
+
+        <p>
+            Upload a CSV or Excel dataset from the Dataset page
+            to start cleaning and preparing your data.
+        </p>
+
+        <a href="/dataset" class="primary-btn">
+            Upload Dataset →
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

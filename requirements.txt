@@ -1,0 +1,9 @@
+Flask
+pandas
+numpy
+openpyxl
+matplotlib
+seaborn
+bokeh
+scikit-learn
+reportlab

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}DataLens — Intelligent Data Exploration{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+<section class="hero">
+
+    <div class="hero-badge">
+        Intelligent Data Exploration Platform
+    </div>
+
+    <h1>
+        Turn raw data into
+        <span>clear decisions.</span>
+    </h1>
+
+    <p>
+        Upload a dataset and let DataLens automatically
+        profile, prepare, visualize, analyze and model
+        your data through one unified workspace.
+    </p>
+
+    <div class="upload-box">
+
+        <h2>Start with your dataset</h2>
+
+        <p>
+            Supported formats: CSV and Excel (.xlsx)
+        </p>
+
+        <br>
+
+        <form action="/upload"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="dataset"
+                accept=".csv,.xlsx"
+                required
+            >
+
+            <button type="submit">
+                Analyze Dataset →
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<div class="grid">
+
+    <div class="card">
+
+        <h2>01</h2>
+
+        <h3>Explore</h3>
+
+        <p>
+            Automatically understand structure,
+            types, missing values and data quality.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>02</h2>
+
+        <h3>Visualize</h3>
+
+        <p>
+            Create statistical and interactive
+            visualizations from your dataset.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>03</h2>
+
+        <h3>Model</h3>
+
+        <p>
+            Experiment with classification,
+            regression and dimensionality reduction.
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

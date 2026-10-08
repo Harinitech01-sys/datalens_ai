@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Distribution Analysis - DataLens</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">DataLens</div>
+
+    <div class="nav-links">
+
+        <a href="/dataset">Dataset</a>
+        <a href="/profiling">Profiling</a>
+        <a href="/preparation">Preparation</a>
+        <a href="/visualize">Visualize</a>
+        <a href="/statistics">Statistics</a>
+        <a href="/bokeh">Interactive</a>
+        <a href="/distribution">Distribution</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="page-header">
+
+        <h1>Distribution & Outlier Analysis</h1>
+
+        <p>
+            Analyze skewness, quartiles, IQR and outliers.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Select Numerical Variable</h2>
+
+        <form method="POST">
+
+            <select name="column" required>
+
+                {% for column in numerical_columns %}
+
+                    <option value="{{ column }}">
+                        {{ column }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <button class="action-button" type="submit">
+                Analyze
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if analysis %}
+
+    <div class="card">
+
+        <h2>Analysis: {{ analysis.column }}</h2>
+
+        <div class="metric-grid">
+
+            <div class="metric-card">
+                <h3>Mean</h3>
+                <p>{{ analysis.mean }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Median</h3>
+                <p>{{ analysis.median }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Standard Deviation</h3>
+                <p>{{ analysis.std }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Skewness</h3>
+                <p>{{ analysis.skewness }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Q1</h3>
+                <p>{{ analysis.q1 }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Q2</h3>
+                <p>{{ analysis.q2 }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Q3</h3>
+                <p>{{ analysis.q3 }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>IQR</h3>
+                <p>{{ analysis.iqr }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Outliers</h3>
+                <p>{{ analysis.outlier_count }}</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Outlier %</h3>
+                <p>{{ analysis.outlier_percentage }}%</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

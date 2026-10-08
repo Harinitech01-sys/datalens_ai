@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Profiling | DataLens</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        📊 DataLens
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Dataset</a>
+        <a href="/profiling">Profiling</a>
+        <a href="/preparation">Preparation</a>
+        <a href="/visualize">Visualize</a>
+        <a href="#">Statistics</a>
+        <a href="#">Relationships</a>
+        <a href="#">Multivariate</a>
+        <a href="#">Dimension Reduction</a>
+        <a href="#">Machine Learning</a>
+        <a href="#">Report</a>
+
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+    <section class="page-header">
+
+        <h1>Data Profiling</h1>
+
+        <p>
+            Understand the structure and quality of your dataset.
+        </p>
+
+    </section>
+
+
+    <section class="metric-grid">
+
+        <div class="metric-card">
+
+            <span class="metric-icon">🔢</span>
+
+            <h3>Rows</h3>
+
+            <strong>
+                {{ info.rows }}
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span class="metric-icon">📊</span>
+
+            <h3>Columns</h3>
+
+            <strong>
+                {{ info.columns }}
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span class="metric-icon">⚠️</span>
+
+            <h3>Missing Values</h3>
+
+            <strong>
+                {{ info.missing_values }}
+            </strong>
+
+        </div>
+
+
+        <div class="metric-card">
+
+            <span class="metric-icon">♻️</span>
+
+            <h3>Duplicate Rows</h3>
+
+            <strong>
+                {{ info.duplicate_rows }}
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <section class="data-preview">
+
+        <div class="section-title">
+
+            <h2>Automatic Column Detection</h2>
+
+            <p>
+                DataLens automatically identifies each column type.
+            </p>
+
+        </div>
+
+        <div class="table-container">
+
+            {{ detected_types | safe }}
+
+        </div>
+
+    </section>
+
+
+    <section class="data-preview">
+
+        <div class="section-title">
+
+            <h2>Column Information</h2>
+
+        </div>
+
+        <div class="table-container">
+
+            {{ column_info | safe }}
+
+        </div>
+
+    </section>
+
+
+    <section class="data-preview">
+
+        <div class="section-title">
+
+            <h2>Statistical Summary</h2>
+
+        </div>
+
+        <div class="table-container">
+
+            {{ statistics | safe }}
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

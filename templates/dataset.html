@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dataset | DataLens</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        📊 DataLens
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/">Dataset</a>
+
+        <a href="/profiling">
+            Profiling
+        </a>
+
+        <a href="#">Preparation</a>
+
+        <a href="#">Visualize</a>
+
+        <a href="#">Statistics</a>
+
+        <a href="#">Relationships</a>
+
+        <a href="#">Multivariate</a>
+
+        <a href="#">Dimension Reduction</a>
+
+        <a href="#">Machine Learning</a>
+
+        <a href="#">Report</a>
+
+    </div>
+
+</nav>
+
+
+
+<main class="container">
+
+
+    <section class="page-header">
+
+        <h1>
+            Dataset Overview
+        </h1>
+
+        <p>
+            Your uploaded dataset is ready for exploration.
+        </p>
+
+    </section>
+
+
+
+    <section class="cards">
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                📄
+            </div>
+
+            <h3>
+                Dataset
+            </h3>
+
+            <p>
+                {{ filename }}
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                🔢
+            </div>
+
+            <h3>
+                Rows
+            </h3>
+
+            <p class="big-number">
+                {{ rows }}
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">
+                📊
+            </div>
+
+            <h3>
+                Columns
+            </h3>
+
+            <p class="big-number">
+                {{ columns }}
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="data-preview">
+
+        <div class="section-title">
+
+            <h2>
+                Dataset Preview
+            </h2>
+
+            <p>
+                First 10 rows of your dataset
+            </p>
+
+        </div>
+
+
+        <div class="table-container">
+
+            {{ data | safe }}
+
+        </div>
+
+    </section>
+
+
+
+</main>
+
+
+</body>
+
+</html>

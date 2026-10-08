@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Visualize — DataLens{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div class="page-icon">📈</div>
+
+        <div>
+            <h1>Visualize</h1>
+
+            <p>
+                Discover patterns through beautiful statistical
+                and interactive charts.
+            </p>
+        </div>
+
+    </div>
+
+
+    {% if not filename %}
+
+    <div class="empty-state">
+
+        <div class="empty-icon">📊</div>
+
+        <h2>Your charts are waiting</h2>
+
+        <p>
+            Upload a dataset first and DataLens will automatically
+            create visualizations based on your data.
+        </p>
+
+        <a href="/dataset" class="primary-btn">
+            Upload Dataset →
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <div class="card">
+
+        <h2>Choose Visualization</h2>
+
+        <form method="POST">
+
+            <label>Chart Type</label>
+
+            <select name="chart_type">
+
+                <option value="histogram">
+                    Histogram
+                </option>
+
+                <option value="boxplot">
+                    Box Plot
+                </option>
+
+                <option value="bar">
+                    Bar Chart
+                </option>
+
+                <option value="scatter">
+                    Scatter Plot
+                </option>
+
+                <option value="line">
+                    Line Chart
+                </option>
+
+            </select>
+
+
+            <label>Column</label>
+
+            <select name="column">
+
+                {% for column in columns %}
+
+                <option value="{{ column }}">
+                    {{ column }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>X Axis</label>
+
+            <select name="x">
+
+                {% for column in columns %}
+
+                <option value="{{ column }}">
+                    {{ column }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Y Axis</label>
+
+            <select name="y">
+
+                {% for column in columns %}
+
+                <option value="{{ column }}">
+                    {{ column }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <button type="submit">
+                Generate Visualization ✨
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if chart %}
+
+    <div class="card chart-card">
+
+        <div class="card-heading">
+
+            <div>
+                <h2>Your Visualization</h2>
+
+                <p>
+                    Generated automatically from your dataset.
+                </p>
+            </div>
+
+        </div>
+
+        <img src="{{ chart }}"
+             alt="Generated visualization"
+             class="generated-chart">
+
+    </div>
+
+    {% endif %}
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

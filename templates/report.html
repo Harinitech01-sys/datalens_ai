@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Report — DataLens{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+
+        <h1>Analysis Report</h1>
+
+        <p>
+            Consolidated summary of your data exploration.
+        </p>
+
+    </div>
+
+
+    <div class="metric-grid">
+
+        <div class="metric-card">
+
+            <h3>Dataset</h3>
+
+            <p>{{ filename }}</p>
+
+        </div>
+
+        <div class="metric-card">
+
+            <h3>Rows</h3>
+
+            <p>{{ rows }}</p>
+
+        </div>
+
+        <div class="metric-card">
+
+            <h3>Columns</h3>
+
+            <p>{{ columns }}</p>
+
+        </div>
+
+        <div class="metric-card">
+
+            <h3>Missing</h3>
+
+            <p>{{ quality.missing_values }}</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Statistical Summary</h2>
+
+        {% if numeric %}
+
+            {{ numeric | safe }}
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Key Findings</h2>
+
+        {% for insight in insights %}
+
+            <div class="insight">
+
+                <div class="insight-number">
+                    {{ loop.index }}
+                </div>
+
+                <div>
+                    {{ insight }}
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="card">
+
+        <a href="/download-report">
+
+            <button>
+                Download PDF Report
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

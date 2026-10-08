@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}ML Lab — DataLens{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+
+        <h1>Machine Learning Lab</h1>
+
+        <p>
+            Compare models and evaluate their performance.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <form method="POST">
+
+            <label>Task</label>
+
+            <select name="model_type" required>
+
+                <option value="classification">
+                    Classification
+                </option>
+
+                <option value="regression">
+                    Regression
+                </option>
+
+            </select>
+
+
+            <label>Target Variable</label>
+
+            <select name="target" required>
+
+                {% for column in numerical %}
+
+                    <option value="{{ column }}">
+                        {{ column }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Features</label>
+
+            {% for column in numerical %}
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="features"
+                        value="{{ column }}"
+                    >
+
+                    {{ column }}
+
+                </label>
+
+            {% endfor %}
+
+
+            <button type="submit">
+                Run Models
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if result %}
+
+        <div class="card">
+
+            {% if result.error %}
+
+                <div class="error-message">
+                    {{ result.error }}
+                </div>
+
+            {% endif %}
+
+            {% if result.results %}
+
+                {{ result.results | safe }}
+
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

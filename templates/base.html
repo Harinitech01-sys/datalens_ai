@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        DataLens
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        Data<span>Lens</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/dataset">Dataset</a>
+
+        <a href="/profiling">Explore</a>
+
+        <a href="/preparation">Prepare</a>
+
+        <a href="/visualize">Visualize</a>
+
+        <a href="/statistics">Statistics</a>
+
+        <a href="/relationships">Relationships</a>
+
+        <a href="/multivariate">Multivariate</a>
+
+        <a href="/pca">PCA</a>
+
+        <a href="/machine-learning">ML Lab</a>
+
+        <a href="/insights">Insights</a>
+
+        <a href="/report">Report</a>
+
+    </div>
+
+</nav>
+
+
+<main>
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Interactive Visualization - DataLens</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">DataLens</div>
+
+    <div class="nav-links">
+
+        <a href="/dataset">Dataset</a>
+        <a href="/profiling">Profiling</a>
+        <a href="/preparation">Preparation</a>
+        <a href="/visualize">Visualize</a>
+        <a href="/statistics">Statistics</a>
+        <a href="/bokeh">Interactive</a>
+        <a href="/distribution">Distribution</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="page-header">
+
+        <h1>Interactive Visualization</h1>
+
+        <p>
+            Explore relationships between numerical variables interactively.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <form method="POST">
+
+            <label>X Axis</label>
+
+            <select name="x_column" required>
+
+                {% for column in numerical_columns %}
+
+                    <option value="{{ column }}">
+                        {{ column }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Y Axis</label>
+
+            <select name="y_column" required>
+
+                {% for column in numerical_columns %}
+
+                    <option value="{{ column }}">
+                        {{ column }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <br><br>
+
+            <button class="action-button" type="submit">
+                Generate Interactive Chart
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if div %}
+
+    <div class="card">
+
+        <h2>Interactive Scatter Plot</h2>
+
+        {{ div | safe }}
+
+        {{ script | safe }}
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
