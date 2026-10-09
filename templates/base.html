@@ -19,33 +19,33 @@
 
 <nav class="navbar">
 
-    <a href="/" class="logo">
+    <a href="{{ url_for('home') }}" class="logo">
         Data<span>Lens</span>
     </a>
 
     <div class="nav-links">
 
-        <a href="/dataset">Dataset</a>
+        <a href="{{ url_for('dataset') }}">Dataset</a>
 
-        <a href="/profiling">Explore</a>
+        <a href="{{ url_for('profiling') }}">Explore</a>
 
-        <a href="/preparation">Prepare</a>
+        <a href="{{ url_for('preparation') }}">Prepare</a>
 
-        <a href="/visualize">Visualize</a>
+        <a href="{{ url_for('visualize') }}">Visualize</a>
 
-        <a href="/statistics">Statistics</a>
+        <a href="{{ url_for('statistics') }}">Statistics</a>
 
-        <a href="/relationships">Relationships</a>
+        <a href="{{ url_for('relationships') }}">Relationships</a>
 
-        <a href="/multivariate">Multivariate</a>
+        <a href="{{ url_for('multivariate') }}">Multivariate</a>
 
-        <a href="/pca">PCA</a>
+        <a href="{{ url_for('pca') }}">PCA</a>
 
-        <a href="/machine-learning">ML Lab</a>
+        <a href="{{ url_for('machine_learning') }}">ML Lab</a>
 
-        <a href="/insights">Insights</a>
+        <a href="{{ url_for('insights') }}">Insights</a>
 
-        <a href="/report">Report</a>
+        <a href="{{ url_for('report') }}">Report</a>
 
     </div>
 

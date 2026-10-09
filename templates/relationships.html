@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Relationships — DataLens{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Relationships</h1>
+        <p>Measure relationships between numerical, categorical, and mixed columns.</p>
+    </div>
+
+    {% if not filename %}
+    <div class="card">
+        <p>Upload a dataset to analyze relationships between its columns.</p>
+    </div>
+    {% else %}
+    <div class="card">
+        <form method="POST">
+            <label for="relationship-type">Relationship Type</label>
+            <select id="relationship-type" name="relationship_type">
+                <option value="numeric">Numerical</option>
+                <option value="categorical">Categorical</option>
+                <option value="mixed">Numerical by category</option>
+            </select>
+
+            <label for="x-column">First / numerical column</label>
+            <select id="x-column" name="x">
+                {% for column in numerical %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+                {% for column in categorical %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="y-column">Second / category column</label>
+            <select id="y-column" name="y">
+                {% for column in columns %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="mixed-numeric">Numerical column for mixed analysis</label>
+            <select id="mixed-numeric" name="numeric">
+                {% for column in numerical %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="mixed-category">Category column for mixed analysis</label>
+            <select id="mixed-category" name="categorical">
+                {% for column in categorical %}
+                <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Analyze Relationship</button>
+        </form>
+    </div>
+
+    {% if result %}
+    <div class="card">
+        <h2>Result</h2>
+        {% if result.error %}
+        <p role="alert">{{ result.error }}</p>
+        {% elif result.type == "numeric" %}
+        <p>{{ result.x }} and {{ result.y }}: Pearson {{ result.pearson }}, Spearman {{ result.spearman }} ({{ result.count }} rows)</p>
+        {% elif result.table %}
+        {{ result.table | safe }}
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

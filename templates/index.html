@@ -6,6 +6,10 @@
 
 <div class="container">
 
+{% if error %}
+    <div class="card error-message" role="alert">{{ error }}</div>
+{% endif %}
+
 <section class="hero">
 
     <div class="hero-badge">

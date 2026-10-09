@@ -9,7 +9,8 @@ from modules.data_profiler import (
 )
 
 from modules.column_detector import (
-    detect_column_types
+    detect_column_types,
+    get_column_type_table
 )
 
 from modules.data_cleaning import (
@@ -258,7 +259,15 @@ def profiling():
     return render_template(
         "profiling.html",
         **context,
-        column_info=column_info
+        column_info=column_info,
+        detected_types=(
+            get_column_type_table(df).to_html(classes="data-table", index=False)
+            if dataset_loaded() else None
+        ),
+        statistics=(
+            get_numeric_statistics(df).to_html(classes="data-table")
+            if dataset_loaded() else None
+        )
     )
 
 
@@ -428,7 +437,6 @@ def visualize():
     return render_template(
         "visualize.html",
         **context,
-        columns=context["columns"],
         numerical=context["types"]["numerical"],
         chart=chart,
         chart_title=chart_title,
@@ -527,8 +535,8 @@ def statistics():
     return render_template(
         "statistics.html",
         **context,
-        numeric=numeric,
-        categorical=categorical
+        numeric_statistics=numeric,
+        categorical_statistics=categorical
     )
 
 
@@ -549,9 +557,10 @@ def distribution():
         )
 
     return render_template(
-        "statistics.html",
+        "distribution.html",
         **context,
-        distribution=result
+        numerical_columns=context["types"]["numerical"],
+        analysis=result
     )
 
 
@@ -652,8 +661,8 @@ def bokeh():
 
     if dataset_loaded() and request.method == "POST":
 
-        x = request.form.get("x")
-        y = request.form.get("y")
+        x = request.form.get("x_column")
+        y = request.form.get("y_column")
 
         try:
 
@@ -668,12 +677,13 @@ def bokeh():
             error = str(exception)
 
     return render_template(
-        "multivariate.html",
+        "bokeh.html",
         **context,
-        numerical=context["types"]["numerical"],
-        matrix=None,
+        numerical_columns=context["types"]["numerical"],
         bokeh_script=script,
         bokeh_div=div,
+        script=script,
+        div=div,
         error=error
     )
 
@@ -801,9 +811,7 @@ def report():
     return render_template(
         "report.html",
         **context,
-        filename=filename,
         rows=context["info"]["rows"] if context["info"] else 0,
-        columns=context["info"]["columns"] if context["info"] else 0,
         numeric=numeric,
         insights=generated
     )

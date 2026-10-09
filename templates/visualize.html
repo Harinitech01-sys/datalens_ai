@@ -21,6 +21,10 @@
 
     </div>
 
+    {% if error %}
+    <div class="card error-message" role="alert">{{ error }}</div>
+    {% endif %}
+
 
     {% if not filename %}
 

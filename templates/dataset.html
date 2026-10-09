@@ -28,27 +28,27 @@
 
     <div class="nav-links">
 
-        <a href="/">Dataset</a>
+        <a href="/dataset">Dataset</a>
 
         <a href="/profiling">
             Profiling
         </a>
 
-        <a href="#">Preparation</a>
+        <a href="/preparation">Preparation</a>
 
-        <a href="#">Visualize</a>
+        <a href="/visualize">Visualize</a>
 
-        <a href="#">Statistics</a>
+        <a href="/statistics">Statistics</a>
 
-        <a href="#">Relationships</a>
+        <a href="/relationships">Relationships</a>
 
-        <a href="#">Multivariate</a>
+        <a href="/multivariate">Multivariate</a>
 
-        <a href="#">Dimension Reduction</a>
+        <a href="/pca">Dimension Reduction</a>
 
-        <a href="#">Machine Learning</a>
+        <a href="/machine-learning">Machine Learning</a>
 
-        <a href="#">Report</a>
+        <a href="/report">Report</a>
 
     </div>
 
@@ -104,7 +104,7 @@
             </h3>
 
             <p class="big-number">
-                {{ rows }}
+                {{ info.rows if info else 0 }}
             </p>
 
         </div>
@@ -121,7 +121,7 @@
             </h3>
 
             <p class="big-number">
-                {{ columns }}
+                {{ info.columns if info else 0 }}
             </p>
 
         </div>
@@ -148,11 +148,27 @@
 
         <div class="table-container">
 
-            {{ data | safe }}
+            {% if preview %}
+                {{ preview | safe }}
+            {% else %}
+                <p>Upload a CSV or XLSX file to see its data preview.</p>
+            {% endif %}
 
         </div>
 
     </section>
+
+    {% if column_info %}
+    <section class="data-preview">
+        <div class="section-title">
+            <h2>Column Details</h2>
+            <p>Data types, missing values, and unique values for each column.</p>
+        </div>
+        <div class="table-container">
+            {{ column_info | safe }}
+        </div>
+    </section>
+    {% endif %}
 
 
 

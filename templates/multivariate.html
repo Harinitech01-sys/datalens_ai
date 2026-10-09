@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Multivariate — DataLens{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>Multivariate Analysis</h1>
+        <p>Compare numerical columns in your uploaded dataset.</p>
+    </div>
+
+    {% if not filename %}
+    <div class="card">
+        <p>Upload a dataset to view its correlation matrix.</p>
+    </div>
+    {% elif not matrix %}
+    <div class="card">
+        <p>No numerical columns are available for correlation analysis.</p>
+    </div>
+    {% else %}
+    <div class="card">
+        <h2>Correlation Matrix</h2>
+        {{ matrix | safe }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
