@@ -3,107 +3,79 @@
 {% block title %}DataLens — Intelligent Data Exploration{% endblock %}
 
 {% block content %}
+<div class="landing-shell">
+    {% if error %}
+    <div class="landing-error" role="alert">{{ error }}</div>
+    {% endif %}
 
-<div class="container">
+    <section class="landing-hero">
+        <div class="landing-copy">
+            <div class="landing-eyebrow"><span></span> YOUR DATA, IN FOCUS</div>
+            <h1>Make your data<br>make <em>sense.</em></h1>
+            <p class="landing-intro">
+                Go from raw files to clear answers. Explore, clean, visualize and model your data in one thoughtful workspace.
+            </p>
 
-{% if error %}
-    <div class="card error-message" role="alert">{{ error }}</div>
-{% endif %}
+            <form id="upload" class="landing-upload" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                <label class="dropzone" id="dropzone" for="dataset-file">
+                    <span class="dropzone-icon" aria-hidden="true">+</span>
+                    <span class="dropzone-copy">
+                        <strong>Drop a dataset to get started</strong>
+                        <span id="file-status" aria-live="polite">or browse files from your device</span>
+                    </span>
+                    <span class="browse-label">Browse</span>
+                    <input id="dataset-file" type="file" name="dataset" accept=".csv,.xlsx" required>
+                </label>
+                <div class="upload-footer">
+                    <span>CSV or XLSX <span aria-hidden="true">&middot;</span> up to 50 MB</span>
+                    <button type="submit">Analyze dataset <span aria-hidden="true">&rarr;</span></button>
+                </div>
+            </form>
+            <div class="landing-assurance"><span aria-hidden="true">&#10003;</span> Your analysis starts as soon as your file is ready</div>
+        </div>
 
-<section class="hero">
+        <div class="workspace-preview" aria-label="Preview of the DataLens analysis workspace">
+            <div class="preview-topbar">
+                <div class="preview-brand"><span class="preview-mark" aria-hidden="true"></span> DataLens <span class="preview-divider">/</span> Workspace</div>
+                <span class="preview-live"><i></i> LIVE ANALYSIS</span>
+            </div>
+            <div class="preview-body">
+                <div class="preview-heading">
+                    <div><span class="preview-kicker">DATA OVERVIEW</span><h2>A clearer view.</h2></div>
+                    <span class="preview-menu" aria-hidden="true">&#8226;&#8226;&#8226;</span>
+                </div>
+                <div class="preview-summary">
+                    <div><span>STRUCTURE</span><strong>Know what is inside</strong><small>Columns, types &amp; completeness</small></div>
+                    <div><span>QUALITY</span><strong>Spot what needs attention</strong><small>Missing values &amp; duplicates</small></div>
+                </div>
+                <div class="preview-chart">
+                    <div class="chart-heading"><div><span>VISUAL EXPLORATION</span><strong>Find the shape of your data</strong></div><span class="chart-key"><i></i> Distribution</span></div>
+                    <div class="chart-area" aria-hidden="true">
+                        <div class="chart-y-labels"><span>High</span><span>Mid</span><span>Low</span></div>
+                        <div class="chart-plot">
+                            <div class="chart-gridline"></div><div class="chart-gridline"></div><div class="chart-gridline"></div>
+                            <div class="chart-bars"><i style="--bar: 36%"></i><i style="--bar: 57%"></i><i style="--bar: 44%"></i><i style="--bar: 76%"></i><i style="--bar: 62%"></i><i style="--bar: 88%"></i><i style="--bar: 68%"></i><i style="--bar: 48%"></i><i style="--bar: 73%"></i><i style="--bar: 55%"></i><i style="--bar: 82%"></i><i style="--bar: 64%"></i></div>
+                            <div class="chart-x-labels"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-bottom"><span>EXPLORE</span><span>PREPARE</span><span>VISUALIZE</span><span>MODEL</span></div>
+            </div>
+        </div>
+    </section>
 
-    <div class="hero-badge">
-        Intelligent Data Exploration Platform
-    </div>
+    <section class="landing-workflow" id="workflow">
+        <div class="section-heading"><span class="section-kicker">A BETTER WAY THROUGH THE WORK</span><h2>From first look to<br><em>next step.</em></h2></div>
+        <div class="workflow-steps">
+            <article><span class="step-number">01</span><h3>Understand</h3><p>See the shape, quality and relationships in your data at a glance.</p></article>
+            <article><span class="step-number">02</span><h3>Get it ready</h3><p>Handle gaps, transform columns and prepare a dataset you can trust.</p></article>
+            <article><span class="step-number">03</span><h3>Find your answer</h3><p>Explore patterns, build models and bring your findings together.</p></article>
+        </div>
+    </section>
 
-    <h1>
-        Turn raw data into
-        <span>clear decisions.</span>
-    </h1>
-
-    <p>
-        Upload a dataset and let DataLens automatically
-        profile, prepare, visualize, analyze and model
-        your data through one unified workspace.
-    </p>
-
-    <div class="upload-box">
-
-        <h2>Start with your dataset</h2>
-
-        <p>
-            Supported formats: CSV and Excel (.xlsx)
-        </p>
-
-        <br>
-
-        <form action="/upload"
-              method="POST"
-              enctype="multipart/form-data">
-
-            <input
-                type="file"
-                name="dataset"
-                accept=".csv,.xlsx"
-                required
-            >
-
-            <button type="submit">
-                Analyze Dataset →
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
-
-<div class="grid">
-
-    <div class="card">
-
-        <h2>01</h2>
-
-        <h3>Explore</h3>
-
-        <p>
-            Automatically understand structure,
-            types, missing values and data quality.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>02</h2>
-
-        <h3>Visualize</h3>
-
-        <p>
-            Create statistical and interactive
-            visualizations from your dataset.
-        </p>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>03</h2>
-
-        <h3>Model</h3>
-
-        <p>
-            Experiment with classification,
-            regression and dimensionality reduction.
-        </p>
-
-    </div>
-
+    <section class="landing-capabilities" id="capabilities">
+        <span class="section-kicker">ONE WORKSPACE. ROOM TO GO DEEPER.</span>
+        <div class="capability-list"><span>Data profiling</span><span>Visual exploration</span><span>Statistical analysis</span><span>Machine learning</span><span>Exportable reports</span></div>
+    </section>
 </div>
-
-</div>
-
 {% endblock %}

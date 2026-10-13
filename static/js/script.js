@@ -24,31 +24,59 @@ document.addEventListener(
 
         const fileInput =
             document.querySelector(
-                'input[type="file"]'
+                '#dataset-file'
             );
 
         if (fileInput) {
+            const dropzone =
+                document.querySelector("#dropzone");
+            const fileStatus =
+                document.querySelector("#file-status");
+
+            function updateSelectedFile() {
+                const file = fileInput.files[0];
+
+                if (!file) {
+                    return;
+                }
+
+                if (!/\.(csv|xlsx)$/i.test(file.name)) {
+                    fileInput.value = "";
+                    fileStatus.textContent =
+                        "Choose a CSV or XLSX file";
+                    dropzone.classList.remove("is-selected");
+                    return;
+                }
+
+                fileStatus.textContent = file.name;
+                dropzone.classList.add("is-selected");
+            }
 
             fileInput.addEventListener(
                 "change",
-                function () {
-
-                    if (
-                        this.files &&
-                        this.files.length > 0
-                    ) {
-
-                        const file =
-                            this.files[0];
-
-                        console.log(
-                            "Selected:",
-                            file.name
-                        );
-                    }
-
-                }
+                updateSelectedFile
             );
+
+            ["dragenter", "dragover"].forEach(function (eventName) {
+                dropzone.addEventListener(eventName, function (event) {
+                    event.preventDefault();
+                    dropzone.classList.add("is-dragging");
+                });
+            });
+
+            ["dragleave", "drop"].forEach(function (eventName) {
+                dropzone.addEventListener(eventName, function (event) {
+                    event.preventDefault();
+                    dropzone.classList.remove("is-dragging");
+                });
+            });
+
+            dropzone.addEventListener("drop", function (event) {
+                if (event.dataTransfer.files.length) {
+                    fileInput.files = event.dataTransfer.files;
+                    updateSelectedFile();
+                }
+            });
         }
 
     }
