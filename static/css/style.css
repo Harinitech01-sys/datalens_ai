@@ -1389,18 +1389,23 @@ button:hover {
 ========================= */
 
 .landing-page {
-    --landing-ink: #182b28;
-    --landing-muted: #697a75;
-    --landing-line: #dce5df;
-    --landing-green: #216b53;
-    --landing-lime: #c8f06a;
-    background: #f5f7f2;
+    --landing-ink: #24172f;
+    --landing-muted: #756b80;
+    --landing-line: #e3dbe9;
+    --landing-green: #7652a5;
+    --landing-lime: #d7c5f4;
+    background: #f7f4fa;
 }
 
 .navbar-home {
+    position: static;
+    top: auto;
+    z-index: auto;
     width: min(1320px, calc(100% - 64px));
     max-width: 1320px;
     min-height: 68px;
+    align-items: center;
+    flex-direction: row;
     margin-top: 20px;
     padding: 10px 0;
     background: transparent;
@@ -1440,7 +1445,7 @@ button:hover {
 
 .home-nav-links .home-nav-cta {
     padding: 11px 16px;
-    border: 1px solid #b7c9bd;
+    border: 1px solid #d4c6df;
     border-radius: 4px;
     color: var(--landing-ink);
 }
@@ -1493,8 +1498,8 @@ button:hover {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #9fcf43;
-    box-shadow: 0 0 0 4px rgba(159, 207, 67, 0.16);
+    background: #9b79c3;
+    box-shadow: 0 0 0 4px rgba(118, 82, 165, 0.14);
 }
 
 .landing-copy h1,
@@ -1532,7 +1537,7 @@ button:hover {
     gap: 15px;
     min-height: 90px;
     padding: 16px 18px;
-    border: 1px dashed #aebfb3;
+    border: 1px dashed #bdafc8;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.58);
     cursor: pointer;
@@ -1552,7 +1557,7 @@ button:hover {
     width: 40px;
     height: 40px;
     place-items: center;
-    border: 1px solid #d3e1d6;
+    border: 1px solid #e3d9eb;
     border-radius: 50%;
     color: var(--landing-green);
     font-size: 22px;
@@ -1632,7 +1637,7 @@ button:hover {
 
 .upload-footer button:hover {
     transform: translateY(-1px);
-    background: var(--landing-green);
+    background: #62428f;
 }
 
 .upload-footer button span {
@@ -1657,9 +1662,9 @@ button:hover {
 .workspace-preview {
     position: relative;
     padding: 0 0 0 1px;
-    border: 1px solid #dce5df;
+    border: 1px solid #e3dbe9;
     background: #fff;
-    box-shadow: 0 24px 70px rgba(33, 55, 46, 0.12);
+    box-shadow: 0 24px 70px rgba(45, 31, 59, 0.12);
     animation: preview-enter 0.7s ease-out both;
 }
 
@@ -1708,7 +1713,7 @@ button:hover {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #8ab93d;
+    background: #8963b8;
 }
 
 .preview-body {
@@ -1748,7 +1753,7 @@ button:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 20px;
-    border: 1px solid #e8eeea;
+    border: 1px solid #ebe5ef;
 }
 
 .preview-summary > div {
@@ -1758,7 +1763,7 @@ button:hover {
 }
 
 .preview-summary > div + div {
-    border-left: 1px solid #e8eeea;
+    border-left: 1px solid #ebe5ef;
 }
 
 .preview-summary span {
@@ -1781,7 +1786,7 @@ button:hover {
 .preview-chart {
     margin-top: 17px;
     padding: 16px 15px 9px;
-    border: 1px solid #e8eeea;
+    border: 1px solid #ebe5ef;
 }
 
 .chart-heading {
@@ -1838,7 +1843,7 @@ button:hover {
     right: 0;
     left: 0;
     height: 1px;
-    background: #edf1ee;
+    background: #f0ebf4;
 }
 
 .chart-gridline:nth-child(1) { top: 0; }
@@ -1860,7 +1865,7 @@ button:hover {
     max-width: 19px;
     height: var(--bar);
     border-radius: 2px 2px 0 0;
-    background: linear-gradient(180deg, #a8d574, #397b5d);
+    background: linear-gradient(180deg, #c3a5e9, #7652a5);
     transform-origin: bottom;
     animation: bar-rise 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
@@ -1885,7 +1890,7 @@ button:hover {
     gap: 8px;
     margin-top: 16px;
     padding-top: 13px;
-    border-top: 1px solid #edf1ee;
+    border-top: 1px solid #f0ebf4;
     color: #728179;
     font-size: 8px;
     font-weight: 700;
@@ -1915,7 +1920,7 @@ button:hover {
 
 .workflow-steps article {
     padding-top: 12px;
-    border-top: 1px solid #afc2b5;
+    border-top: 1px solid #c8bad4;
 }
 
 .step-number {
